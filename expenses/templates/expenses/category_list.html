@@ -7,17 +7,22 @@
 	<thead>
 		<tr>
 			<th>name</th>
+			<th>amount</th>
 			<th>actions</th>
 		</tr>
 	</thead>
 	<tbody>
-		{% for obj in object_list %}
+		{% for name,id,amount in expenses_per_category %}
 		<tr>
 			<td>
-				{{obj.name}}
+				{{name}}
 			</td>
 			<td>
-				<a href="{% url 'expenses:category-delete' obj.id %}">delete</a>
+				{{amount|floatformat:2}}
+			</td>
+			<td>
+				<a href="{% url 'expenses:category-delete' id %}">delete</a>
+				<a href="{% url 'expenses:category-update' id %}">update</a>
 			</td>
 		</tr>
 		{% endfor %}
